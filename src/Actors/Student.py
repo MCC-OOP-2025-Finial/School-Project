@@ -6,6 +6,6 @@ class Student(ActorMain.ActorMain):
     Args:
         ActorMain (Type[ActorMain]): The base class for all actors in the system.
     """
-    ##ToDo: Implement Student class
+    #TODO Implement Student class
     print("Student class is under construction")
         
