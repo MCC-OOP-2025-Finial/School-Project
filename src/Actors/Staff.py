@@ -5,111 +5,122 @@ class Staff(ActorMain.ActorMain):
     def __init__(self, role, salary, hoursWorkedWeek, experienceYears):
         super().__init__()
         self.role = role
-        self.experienceYears = random.randint(0,35)
-        
-# Subclasses for staff roles
+        self.salary = salary
+        self.hoursWorkedWeek = hoursWorkedWeek
+        self.experienceYears = experienceYears
+
+# Role subclasses
 class teacher(Staff):
-    def __init__(self,homeroom)
-        self.homeroom = classroom
+    def __init__(self, role, salary, hoursWorkedWeek, experienceYears, homeroom):
+        super().__init__(role, salary, hoursWorkedWeek, experienceYears)
+        self.homeroom = homeroom
     salary = "63,000"
-    def teach():
+    def teach(self):
         pass
-    def prepareLesson():
+    def prepareLesson(self):
         pass
-    def recordAttendance():
+    def recordAttendance(self):
         pass
     def getSalary(self):
         return self.salary
-        
-class principle(Staff):
+
+
+class principal(Staff):
     salary = "104,000"
-    def sendAnnouncement():
-    announcement = input("Enter announcement: ")
-    return f"Announcement: {announcement}"
-    def evaluateTeacher()
+    def sendAnnouncement(self):
+        announcement = input("Enter announcement: ")
+        return f"Announcement: {announcement}"
+    def evaluateTeacher(self):
         pass
     def getSalary(self):
         return self.salary
-        
-class vicePrinciple(Staff):
+
+
+class viceprincipal(Staff):
     salary = "86,000"
     def getSalary(self):
         return self.salary
-        
+
+
 class custodian(Staff):
-    def cleanRoom():
-        location = self.location
-        return f"{location} was cleaned."
-    def resupplyRoom()
-        location = self.location
-        return f"{location} was resupplied."
     salary = "30,000"
+    def cleanRoom(self):
+        return f"{self.location} was cleaned."
+    def resupplyRoom(self):
+        return f"{self.location} was resupplied."
     def getSalary(self):
         return self.salary
-        
+
+
 class resourceOfficer(Staff):
     salary = "79,000"
     def getSalary(self):
         return self.salary
-    def apprehend(location, name):
+    def apprehend(self, location, name):
         return f"{name} has been apprehended."
-    def search(location, name):
+    def search(self, location, name):
         return f"{name} has been searched."
-        
+
+
 class coach(Staff):
     salary = "43,000"
     def getSalary(self):
         return self.salary
-        
+
+
 class it(Staff):
     salary = "54,000"
     def getSalary(self):
         return self.salary
-    def fixComputer()
+    def fixComputer(self):
         pass
-        
+
+
 class nurse(Staff):
     salary = "67,000"
     def getSalary(self):
         return self.salary
-    def checkHealth()
+    def checkHealth(self):
         pass
-    def tendTo
+    def tendTo(self):
         pass
-        
+
+
 class guidanceCounsler(Staff):
     salary = "60,000"
     def getSalary(self):
         return self.salary
-    def counsel():
+    def counsel(self):
         pass
+
 
 class secratary(Staff):
     salary = "55,000"
     def getSalary(self):
         return self.salary
-    def greet()
+    def greet(self):
         pass
-    def doClericalDuty()
+    def doClericalDuty(self):
         pass
 
-class cafetieriaWorker(Staff)
+
+class cafetieriaWorker(Staff):
     salary = "30,000"
-    def getSalary(self)
+    def getSalary(self):
         return self.salary
-    def serveFood()
+    def serveFood(self):
         pass
-    def cleanCafetieria()
+    def cleanCafetieria(self):
         pass
-    def assistStudent()
+    def assistStudent(self):
         pass
-        
+
 # Creates the roles
 def createStaffRoles(role, salary, hoursWorkedWeek, experienceYears):
     mapping = {
         "Teacher": teacher,
-        "Princaple": principle,
-        "Vice Principle": vicePrinciple,
+        "Principal": principal,
+        "Vice Principal": viceprincipal,
         "Custodian": custodian,
         "Resource Officer": resourceOfficer,
         "Coach": coach,
