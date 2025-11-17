@@ -24,23 +24,20 @@ class teacher(Staff):
     def getSalary(self):
         return self.salary
 
-
 class principal(Staff):
     salary = "104,000"
     def sendAnnouncement(self):
         announcement = input("Enter announcement: ")
         return f"Announcement: {announcement}"
     def evaluateTeacher(self):
-        pass
+        return f"Teacher has been evaluated."
     def getSalary(self):
         return self.salary
 
-
-class viceprincipal(Staff):
+class vicePrincipal(Staff):
     salary = "86,000"
     def getSalary(self):
         return self.salary
-
 
 class custodian(Staff):
     salary = "30,000"
@@ -51,7 +48,6 @@ class custodian(Staff):
     def getSalary(self):
         return self.salary
 
-
 class resourceOfficer(Staff):
     salary = "79,000"
     def getSalary(self):
@@ -61,12 +57,10 @@ class resourceOfficer(Staff):
     def search(self, location, name):
         return f"{name} has been searched."
 
-
 class coach(Staff):
     salary = "43,000"
     def getSalary(self):
         return self.salary
-
 
 class it(Staff):
     salary = "54,000"
@@ -75,52 +69,48 @@ class it(Staff):
     def fixComputer(self):
         pass
 
-
 class nurse(Staff):
     salary = "67,000"
     def getSalary(self):
         return self.salary
-    def checkHealth(self):
-        pass
-    def tendTo(self):
-        pass
-
+    def checkHealth(self, name):
+        return f"{name} had their health checked."
+    def tendTo(self, name):
+        return f"{name} has been tended to."
 
 class guidanceCounsler(Staff):
     salary = "60,000"
     def getSalary(self):
         return self.salary
     def counsel(self):
-        pass
-
+        return f"{name} has been counseled"
 
 class secratary(Staff):
     salary = "55,000"
     def getSalary(self):
         return self.salary
     def greet(self):
-        pass
+        return f"Person greeted."
     def doClericalDuty(self):
-        pass
-
+        return f"Clerical duty done."
 
 class cafetieriaWorker(Staff):
     salary = "30,000"
     def getSalary(self):
         return self.salary
     def serveFood(self):
-        pass
+        return f"Lunch is served."
     def cleanCafetieria(self):
-        pass
-    def assistStudent(self):
-        pass
+        return f"Cafetieria is cleaned."
+    def assistStudent(self, name):
+        return f"{name} assisted."
 
 # Creates the roles
 def createStaffRoles(role, salary, hoursWorkedWeek, experienceYears):
     mapping = {
         "Teacher": teacher,
         "Principal": principal,
-        "Vice Principal": viceprincipal,
+        "Vice Principal": vicePrincipal,
         "Custodian": custodian,
         "Resource Officer": resourceOfficer,
         "Coach": coach,
@@ -129,6 +119,7 @@ def createStaffRoles(role, salary, hoursWorkedWeek, experienceYears):
         "Guidance Counsler": guidanceCounsler,
         "Cafetieria Worker": cafetieriaWorker,
         "Secratary": secratary,
+        "Librarian": librarian,
     }
 
     return mapping[role](role, salary, hoursWorkedWeek, experienceYears)
