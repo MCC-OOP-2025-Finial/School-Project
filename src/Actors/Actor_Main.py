@@ -26,6 +26,9 @@ class ActorMain:
         self.location = location or "Unknown"
         self.phoneNumber = phoneNumber or "000-000-0000"
         self.emergencyContact = emergencyContact or "None"
+
+    def set_schedule(self, schedule_dict):
+        self.schedule = schedule_dict
         
     def Goto(self, location):
         self.location = location
