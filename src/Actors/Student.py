@@ -46,7 +46,7 @@ class Student(ActorMain):
 
     def go_to(self, location):
         """Movement wrapper for ActorMain's Goto()"""
-        print(self.goto(location))
+        print(self.Goto(location))
 
     def __str__(self):
         return f"Student {self.name} ({self.id}) - Major: {self.major}, GPA: {self.gpa}"

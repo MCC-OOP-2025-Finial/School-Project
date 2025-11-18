@@ -47,7 +47,7 @@ class ActorMain:
         self.phoneNumber = phoneNumber or "000-000-0000"
         self.emergencyContact = emergencyContact or "None"
 
-    def goto(self, location: str):
+    def Goto(self, location: str):
         """Move the actor to a different location."""
     def set_schedule(self, schedule_dict):
         self.schedule = schedule_dict
