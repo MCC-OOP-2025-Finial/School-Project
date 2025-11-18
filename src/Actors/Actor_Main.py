@@ -49,5 +49,9 @@ class ActorMain:
 
     def goto(self, location: str):
         """Move the actor to a different location."""
+    def set_schedule(self, schedule_dict):
+        self.schedule = schedule_dict
+        
+    def Goto(self, location):
         self.location = location
         return f"{self.name} is going to {location}."
