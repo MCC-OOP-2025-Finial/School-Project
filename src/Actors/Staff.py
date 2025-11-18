@@ -1,169 +1,100 @@
 from Actors.Actor_Main import ActorMain
 import random
-
+from Utility import DeniedRoleMethod
 
 class Staff(ActorMain):
-    def __init__(self, role, salary=None, hoursWorkedWeek=None, experienceYears=None, **kwargs):
+    def __init__(self, role, salary=0, hoursWorkedWeek=None, experienceYears=None, **kwargs):
         # Allow passing actor fields like name, age, etc. via kwargs
         super().__init__(**kwargs)
         self.role = role
-        self.salary = salary or "0"
-        self.hoursWorkedWeek = hoursWorkedWeek or 0
-        self.experienceYears = experienceYears or 0
+        self.salary = salary
+        self.hoursWorkedWeek = hoursWorkedWeek
+        self.experienceYears = experienceYears
 
-# Role subclasses
-class teacher(Staff):
-    def __init__(self, role="Teacher", salary="63,000", hoursWorkedWeek=40, experienceYears=0, homeroom=None, subject=None, **kwargs):
-        super().__init__(role, salary, hoursWorkedWeek, experienceYears, **kwargs)
-        self.homeroom = homeroom
-        self.subject = subject or "General"
 
-    def teach(self, topic=None, duration_minutes=45):
-        """Simulate teaching a topic.
+    # Error handling
+    
 
-        - topic: optional topic string
-        - duration_minutes: approximate class length
-        Returns a short summary string.
-        """
-        topic = topic or f"{self.subject} lesson"
-        msg = f"{self.name} (role={self.role}) teaches '{topic}' for {duration_minutes} minutes in {self.homeroom or 'their assigned room'}."
-        print(msg)
-        return msg
+    def calculateSalary(self):
+# Determines salary based on staff role.
+        salaries = {
+        "Teacher": 63000,
+        "Principal": 104000,
+        "Vice Principal": 86000,
+        "Custodian": 30000,
+        "Resource Officer": 79000,
+        "Coach": 43000,
+        "IT": 54000,
+        "Nurse": 67000,
+        "Guidance Counselor": 60000}
 
-    def prepareLesson(self, topic=None):
-        """Prepare materials for a lesson and return a brief status."""
-        topic = topic or f"{self.subject}"
-        msg = f"{self.name} prepares lesson materials for {topic}."
-        print(msg)
-        return msg
+    def teach(self):
+        if self.role != "Teacher" or "Coach":
+            raise DeniedRoleMethod("This role can't use this method.")
 
-    def recordAttendance(self, students_list=None):
-        """Record attendance for a list of student names.
-
-        - students_list: optional list of names; if None, returns a template string.
-        """
-        if students_list is None:
-            msg = f"{self.name} is ready to take attendance for {self.homeroom or 'the class'}."
-            print(msg)
-            return msg
-
-        present = len(students_list)
-        msg = f"{self.name} recorded attendance: {present} present ({', '.join(students_list)})."
-        print(msg)
-        return msg
-
-    def getSalary(self):
-        return self.salary
-
-class principal(Staff):
-    salary = "104,000"
-    def __init__(self, role=None, salary=None, hoursWorkedWeek=None, experienceYears=None, **kwargs):
-        super().__init__(role or "Principal", salary or self.salary, hoursWorkedWeek, experienceYears, **kwargs)
+    def prepareLesson(self):
+        if self.role != "Teacher" or "Coach":
+            raise DeniedRoleMethod("This role can't use this method.")
+    
+    def recordAttendance(self) :
+        if self.role != "Teacher" or "Coach":
+            raise DeniedRoleMethod("This role can't use this method.")
 
     def sendAnnouncement(self):
-        announcement = input("Enter announcement: ")
-        return f"Announcement: {announcement}"
-
+        if self.role != "Principal" or "Vice Principal":
+            raise DeniedRoleMethod("This role can't use this method.")
+        
     def evaluateTeacher(self):
-        return f"Teacher has been evaluated."
-
-    def getSalary(self):
-        return self.salary
-
-class vicePrincipal(Staff):
-    salary = "86,000"
-    def __init__(self, role=None, salary=None, hoursWorkedWeek=None, experienceYears=None, **kwargs):
-        super().__init__(role or "Vice Principal", salary or self.salary, hoursWorkedWeek, experienceYears, **kwargs)
-
-    def getSalary(self):
-        return self.salary
-
-class custodian(Staff):
-    salary = "30,000"
-    def __init__(self, role=None, salary=None, hoursWorkedWeek=None, experienceYears=None, **kwargs):
-        super().__init__(role or "Custodian", salary or self.salary, hoursWorkedWeek, experienceYears, **kwargs)
-
+        if self.role != "Principal":
+            raise DeniedRoleMethod("This role can't use this method.")
+    
     def cleanRoom(self):
-        return f"{self.location} was cleaned."
+        if self.role != "Custiodian":
+            raise DeniedRoleMethod("This role can't use this method.")
 
     def resupplyRoom(self):
-        return f"{self.location} was resupplied."
-
-    def getSalary(self):
-        return self.salary
-
-class resourceOfficer(Staff):
-    salary = "79,000"
-    def __init__(self, role=None, salary=None, hoursWorkedWeek=None, experienceYears=None, **kwargs):
-        super().__init__(role or "Resource Officer", salary or self.salary, hoursWorkedWeek, experienceYears, **kwargs)
-
-    def getSalary(self):
-        return self.salary
-
-    def apprehend(self, location, name):
-        return f"{name} has been apprehended."
-
-    def search(self, location, name):
-        return f"{name} has been searched."
-
-class coach(Staff):
-    salary = "43,000"
-    def __init__(self, role=None, salary=None, hoursWorkedWeek=None, experienceYears=None, **kwargs):
-        super().__init__(role or "Coach", salary or self.salary, hoursWorkedWeek, experienceYears, **kwargs)
-
-    def getSalary(self):
-        return self.salary
-
-class it(Staff):
-    salary = "54,000"
-    def __init__(self, role=None, salary=None, hoursWorkedWeek=None, experienceYears=None, **kwargs):
-        super().__init__(role or "IT", salary or self.salary, hoursWorkedWeek, experienceYears, **kwargs)
-
-    def getSalary(self):
-        return self.salary
+        if self.role != "Custodian":
+            raise DeniedRoleMethod("This role can't use this method.")
+    
+    def apprehend(self):
+        if self.role != "Resource Officer":
+            raise DeniedRoleMethod("This role can't use this method.")
+    
+    def search(self):
+        if self.role != "Resource Officer":
+            raise DeniedRoleMethod("This role can't use this method.")
 
     def fixComputer(self):
-        return f"{self.name} fixes a computer."
+        if self.role != "IT":
+            raise DeniedRoleMethod("This role can't use this method.")
 
-class nurse(Staff):
-    salary = "67,000"
-    def __init__(self, role=None, salary=None, hoursWorkedWeek=None, experienceYears=None, **kwargs):
-        super().__init__(role or "Nurse", salary or self.salary, hoursWorkedWeek, experienceYears, **kwargs)
+    def checkHealth(self):
+        if self.role != "Nurse":
+            raise DeniedRoleMethod("This role can't use this method.")
+    
+    def tendTo(self):
+        if self.role != "Nurse":
+            raise DeniedRoleMethod("This role can't use this method.")
 
-    def getSalary(self):
-        return self.salary
-
-    def checkHealth(self, name):
-        return f"{name} had their health checked."
-
-    def tendTo(self, name):
-        return f"{name} has been tended to."
-
-class guidanceCounsler(Staff):
-    salary = "60,000"
-    def __init__(self, role=None, salary=None, hoursWorkedWeek=None, experienceYears=None, **kwargs):
-        super().__init__(role or "Guidance Counselor", salary or self.salary, hoursWorkedWeek, experienceYears, **kwargs)
-
-    def getSalary(self):
-        return self.salary
-
-    def counsel(self, name=None):
-        name = name or self.name
-        return f"{name} has been counseled"
-
-class secratary(Staff):
-    salary = "55,000"
-    def __init__(self, role=None, salary=None, hoursWorkedWeek=None, experienceYears=None, **kwargs):
-        super().__init__(role or "Secretary", salary or self.salary, hoursWorkedWeek, experienceYears, **kwargs)
-
-    def getSalary(self):
-        return self.salary
+    def counsel(self):
+        if self.role != "Guidance Counsler":
+            raise DeniedRoleMethod("This role can't use this method.")
 
     def greet(self):
-        return f"Person greeted."
+        if self.role != "Secratary":
+            raise DeniedRoleMethod("This role can't use this method.")
+    
+    def ClericalDuty(self):
+        if self.role != "Secratary":
+            raise DeniedRoleMethod("This role can't use this method.")
 
-    def doClericalDuty(self):
-        return f"Clerical duty done."
+    def serveFood(self):
+        if self.role != "Cafetieria Worker":
+            raise DeniedRoleMethod("This role can't use this method.")
+
+    def cleanCafetieria(self):
+        if self.role != "Cafetieria Worker":
+            raise DeneiedRoleMethod("This ")
 
 class cafetieriaWorker(Staff):
     salary = "30,000"
@@ -193,21 +124,3 @@ class librarian(Staff):
     def checkOutBook(self):
         return f"Book checked out."
 
-# Creates the roles
-def createStaffRoles(role, salary, hoursWorkedWeek, experienceYears):
-    mapping = {
-        "Teacher": teacher,
-        "Principal": principal,
-        "Vice Principal": vicePrincipal,
-        "Custodian": custodian,
-        "Resource Officer": resourceOfficer,
-        "Coach": coach,
-        "IT": it,
-        "Nurse": nurse,
-        "Guidance Counsler": guidanceCounsler,
-        "Cafetieria Worker": cafetieriaWorker,
-        "Secratary": secratary,
-        "Librarian": librarian,
-    }
-
-    return mapping[role](role, salary, hoursWorkedWeek, experienceYears)

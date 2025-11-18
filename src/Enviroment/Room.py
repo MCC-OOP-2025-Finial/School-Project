@@ -1,19 +1,27 @@
-import Actor_Main as ActorMain # Retained original import, though not strictly needed here
 import random
 from typing import List, Any, Optional 
+from Actors.Staff import Staff
 
 class Room:
     
 
-    def __init__(self, name: str, description: str, actors: Optional[List[Any]] = None): 
-        
+    def __init__(self, name: str, description: str, actors: Optional[List[Any]] = None, teacher: Optional[Staff] = None): 
+        """Create a Room.
+
+        Avoid using mutable default arguments. If callers supply lists they are used,
+        otherwise new lists are created per-instance.
+        """
         self.name = name
         self.description = description
+
+
+        self.actors = list(actors) if actors is not None else []
+        self.teacher = teacher or Staff(role="Teacher", location=self.name)
         
-        
-        self.actors = actors if actors is not None else []
-        self.items = []
+
+
         print(f"Room '{self.name}' created.")
+        self.add_actor(self.teacher)
         
     def add_actor(self, actor: Any):
 

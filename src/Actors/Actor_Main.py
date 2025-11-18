@@ -1,13 +1,12 @@
 import random
 import string
+import names # type: ignore
 
-# Local fallback lists to generate random names
-FIRST_NAMES = ["Alex", "Jordan", "Taylor", "Sam", "Chris", "Jamie", "Morgan", "Casey"]
-LAST_NAMES = ["Smith", "Johnson", "Brown", "Davis", "Garcia", "Miller", "Wilson", "Anderson"]
 
-def generate_random_name():
-    """Generates a random full name without external libraries."""
-    return random.choice(FIRST_NAMES) + " " + random.choice(LAST_NAMES)
+
+
+
+
 
 class ActorMain:
     """
@@ -29,14 +28,15 @@ class ActorMain:
         self.id = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
         
         # Generate identity data
-        self.name = name or generate_random_name()
+        self.gender = gender or random.choice(["Male", "Female"])
+        self.name = name or names.get_full_name(gender=self.gender)
         self.age = age or random.randint(18, 65)
 
         # Generate simple email
         last = self.name.split()[-1].lower()
-        self.email = email or f"{last}{self.id.lower()}@school.edu"
+        self.email = email or f"{last}@school.edu"
 
-        self.gender = gender or random.choice(["Male", "Female"])
+        
 
         # Movement + schedule
         self.schedule = schedule or {}
@@ -46,8 +46,7 @@ class ActorMain:
         self.phoneNumber = phoneNumber or "000-000-0000"
         self.emergencyContact = emergencyContact or "None"
 
-    def Goto(self, location: str):
-        """Move the actor to a different location."""
+   
     def set_schedule(self, schedule_dict):
         self.schedule = schedule_dict
         

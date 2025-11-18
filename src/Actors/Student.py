@@ -1,4 +1,9 @@
+import random
 from Actors.Actor_Main import ActorMain
+import sys
+from Data.Classes import Classes
+
+## grab the
 
 
 class Student(ActorMain):
@@ -15,7 +20,7 @@ class Student(ActorMain):
         self.gpa = gpa or 0.0
 
         # Student class schedule (list of class names)
-        self.schedule = schedule or []
+        self.schedule = schedule or random.sample(Classes, k=4)
         self.current_class = None
 
     def set_schedule(self, schedule_list):
@@ -49,4 +54,4 @@ class Student(ActorMain):
         print(self.Goto(location))
 
     def __str__(self):
-        return f"Student {self.name} ({self.id}) - Major: {self.major}, GPA: {self.gpa}"
+        return f"Student {self.name} ({self.id}) - Major: {self.major}, GPA: {self.gpa} | Email: {self.email} | Current Class: {self.current_class or 'None'} | Schedule: {', '.join(self.schedule) if self.schedule else 'No more classes today.'} | Location: {self.location} "
