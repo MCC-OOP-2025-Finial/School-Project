@@ -1,38 +1,40 @@
-import Actor_Main as ActorMain
+from Actors.Actor_Main import ActorMain
 import random
 
-class Staff(ActorMain.ActorMain):
-    """
-    Args:
-        ActorMain (Type[ActorMain]): The base class for all actors in the system.
-    """
-        def __init__(self, role, salary, hoursWorkedWeek, experienceYears):
-        super().__init__()
-        self.role = role
-        self.experienceYears = random.randint(0,35)
-        self.salary = self.calculateSalary()
-    
-    def calcualteSalary(self)
-        #Calculates salary based off staff role
-        if self.role == "Teacher":
-            return "63,000"
-        elif self.role == "Princaple":
-            return "104,000"
-        elif self.role == "Vice Principle":
-            return "86,000"
-        elif self.role == "Custodian":
-            return "30,000"
-        elif self.role == "Resource Officer":
-            return "79,000"
-        elif self.role == "Coach":
-            return "43,000"
-        elif self.role == "It":
-            return "54,000"
-        elif self.role = "Nurse":
-            return "67,000"
-        elif self.role = "Guidance Counsler":
-            return "60,000"
 
-    #TODO - Implement Staff class
-    print("Staff class is under construction")
-    
+class Staff(ActorMain):
+    """
+    Represents a staff member in the school.
+    Inherits from ActorMain and adds role, salary, and experience data.
+    """
+
+    def __init__(self, role: str, experienceYears: int = None, **kwargs):
+        # Pass all inherited attributes (name, age, etc.)
+        super().__init__(**kwargs)
+
+        self.role = role
+        self.experienceYears = (
+            experienceYears if experienceYears is not None else random.randint(1, 35)
+        )
+        self.salary = self.calculateSalary()
+
+    def calculateSalary(self):
+        """Determines salary based on staff role."""
+        salaries = {
+            "Teacher": 63000,
+            "Principal": 104000,
+            "Vice Principal": 86000,
+            "Custodian": 30000,
+            "Resource Officer": 79000,
+            "Coach": 43000,
+            "IT": 54000,
+            "Nurse": 67000,
+            "Guidance Counselor": 60000
+        }
+        return salaries.get(self.role, 40000)
+
+    def __str__(self):
+        return (
+            f"{self.role} {self.name} (ID: {self.id}) — "
+            f"Experience: {self.experienceYears} yrs, Salary: ${self.salary:,}"
+        )
