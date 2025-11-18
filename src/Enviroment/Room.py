@@ -1,40 +1,40 @@
-from typing import Any, Dict, List, Optional
+import Actor_Main as ActorMain # Retained original import, though not strictly needed here
+import random
+from typing import List, Any, Optional 
 
-# A general-purpose room.
 class Room:
-    def __init__(self, name: str, description: str, actors: Optional[List[Any]] = None):
-        self.name: str = name
-        self.description: str = description
-        self.actors: List[Any] = actors or []
-        self.items: List[Any] = []
-        self.exits: Dict[str, "Room"] = {}
-
-    # Actor management
-    def add_actor(self, actor: Any) -> None:
-        if actor in self.actors:
-            return
-        self.actors.append(actor)
-
-    def remove_actor(self, actor: Any) -> None:
-        try:
-            self.actors.remove(actor)
-        except ValueError:
-            raise ValueError("Actor not present in room")
-
-    def list_actors(self) -> List[Any]:
-        return list(self.actors)
-
-# A classroom with a limited capacity.
-class Classroom(Room):
-    def __init__(self, capacity: int, actors: Optional[List[Any]] = None):
-        super().__init__(name, description, actors)
-        self.capacity = int(capacity)
-
-    def add_actor(self, actor: Any) -> None:
-        if len(self.actors) >= self.capacity:
-            raise ValueError("Classroom is full")
-        super().add_actor(actor)
-
-    #TODO - Implement Room class
-    print("Room class is under construction")
     
+
+    def __init__(self, name: str, description: str, actors: Optional[List[Any]] = None): 
+        
+        self.name = name
+        self.description = description
+        
+        
+        self.actors = actors if actors is not None else []
+        self.items = []
+        print(f"Room '{self.name}' created.")
+        
+    def add_actor(self, actor: Any):
+
+        if actor not in self.actors:
+            self.actors.append(actor)
+            print(f"{actor.name} has entered {self.name}.")
+            
+    def remove_actor(self, actor: Any):
+
+        if actor in self.actors:
+            self.actors.remove(actor)
+            print(f"{actor.name} has left {self.name}.")
+            
+    
+    def __str__(self):
+        
+        description = [f"You are in the **{self.name}**."]
+        description.append(self.description)
+        
+        if self.actors:
+            actor_names = [a.name for a in self.actors if hasattr(a, 'name')]
+            description.append(f"You see the following people here: {', '.join(actor_names)}.")
+            
+        return "\n".join(description)
