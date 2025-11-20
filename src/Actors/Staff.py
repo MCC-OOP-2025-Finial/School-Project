@@ -2,21 +2,17 @@ from Actors.Actor_Main import ActorMain
 import random
 from Utility import DeniedRoleMethod
 
+# Staff interface
 class Staff(ActorMain):
     def __init__(self, role, salary=0, hoursWorkedWeek=None, experienceYears=None, **kwargs):
-        # Allow passing actor fields like name, age, etc. via kwargs
         super().__init__(**kwargs)
         self.role = role
         self.salary = salary
         self.hoursWorkedWeek = hoursWorkedWeek
         self.experienceYears = experienceYears
 
-
-    # Error handling
-    
-
+    # Determines salary based on staff role.
     def calculateSalary(self):
-# Determines salary based on staff role.
         salaries = {
         "Teacher": 63000,
         "Principal": 104000,
@@ -26,9 +22,18 @@ class Staff(ActorMain):
         "Coach": 43000,
         "IT": 54000,
         "Nurse": 67000,
-        "Guidance Counselor": 60000}
+        "Guidance Counselor": 60000,
+        "Librarian": 30000}
 
-    def teach(self):
+    # All staff methods check role attribute of object before running
+    # If the role attribute is not listed in the method, a custom error is raised
+
+    # Teacher/Coach methods
+    def startTeaching(self):
+        if self.role != "Teacher" or "Coach":
+            raise DeniedRoleMethod("This role can't use this method.")
+
+    def stopTeaching(self):
         if self.role != "Teacher" or "Coach":
             raise DeniedRoleMethod("This role can't use this method.")
 
@@ -40,6 +45,7 @@ class Staff(ActorMain):
         if self.role != "Teacher" or "Coach":
             raise DeniedRoleMethod("This role can't use this method.")
 
+    # Principal/Vice Principal methods
     def sendAnnouncement(self):
         if self.role != "Principal" or "Vice Principal":
             raise DeniedRoleMethod("This role can't use this method.")
@@ -47,7 +53,8 @@ class Staff(ActorMain):
     def evaluateTeacher(self):
         if self.role != "Principal":
             raise DeniedRoleMethod("This role can't use this method.")
-    
+
+    # Custodian methods
     def cleanRoom(self):
         if self.role != "Custiodian":
             raise DeniedRoleMethod("This role can't use this method.")
@@ -55,7 +62,8 @@ class Staff(ActorMain):
     def resupplyRoom(self):
         if self.role != "Custodian":
             raise DeniedRoleMethod("This role can't use this method.")
-    
+
+    # Resource Officer methods
     def apprehend(self):
         if self.role != "Resource Officer":
             raise DeniedRoleMethod("This role can't use this method.")
@@ -64,10 +72,12 @@ class Staff(ActorMain):
         if self.role != "Resource Officer":
             raise DeniedRoleMethod("This role can't use this method.")
 
+    # IT methods
     def fixComputer(self):
         if self.role != "IT":
             raise DeniedRoleMethod("This role can't use this method.")
 
+    # Nurse methods
     def checkHealth(self):
         if self.role != "Nurse":
             raise DeniedRoleMethod("This role can't use this method.")
@@ -76,10 +86,12 @@ class Staff(ActorMain):
         if self.role != "Nurse":
             raise DeniedRoleMethod("This role can't use this method.")
 
+    # Guidance Counseler methods
     def counsel(self):
         if self.role != "Guidance Counsler":
             raise DeniedRoleMethod("This role can't use this method.")
 
+    # Secratary methods
     def greet(self):
         if self.role != "Secratary":
             raise DeniedRoleMethod("This role can't use this method.")
@@ -88,39 +100,21 @@ class Staff(ActorMain):
         if self.role != "Secratary":
             raise DeniedRoleMethod("This role can't use this method.")
 
+    # Cafetieria Worker methods
     def serveFood(self):
         if self.role != "Cafetieria Worker":
             raise DeniedRoleMethod("This role can't use this method.")
 
     def cleanCafetieria(self):
         if self.role != "Cafetieria Worker":
-            raise DeneiedRoleMethod("This ")
+            raise DeneiedRoleMethod("This role can't use this method.")
 
-class cafetieriaWorker(Staff):
-    salary = "30,000"
-    def __init__(self, role=None, salary=None, hoursWorkedWeek=None, experienceYears=None, **kwargs):
-        super().__init__(role or "Cafeteria Worker", salary or self.salary, hoursWorkedWeek, experienceYears, **kwargs)
+    def assistStudent(self):
+        if self.role != "Cafetieria Worker":
+            raise DeneiedRoleMethod("This role can't use this method.")
 
-    def getSalary(self):
-        return self.salary
-
-    def serveFood(self):
-        return f"Lunch is served."
-
-    def cleanCafetieria(self):
-        return f"Cafetieria is cleaned."
-
-    def assistStudent(self, name):
-        return f"{name} assisted."
-    
-class librarian(Staff):
-    salary = "69,000"
-    def __init__(self, role=None, salary=None, hoursWorkedWeek=None, experienceYears=None, **kwargs):
-        super().__init__(role or "Librarian", salary or self.salary, hoursWorkedWeek, experienceYears, **kwargs)
-
-    def getSalary(self):
-        return self.salary
-
+    # Librarian methods
     def checkOutBook(self):
-        return f"Book checked out."
+        if self.role != "Librarian":
+            raise DeneiedRoleMethod("This role can't use this method.")
 
