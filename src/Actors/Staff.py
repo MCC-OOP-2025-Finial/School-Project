@@ -107,14 +107,14 @@ class Staff(ActorMain):
 
     def cleanCafetieria(self):
         if self.role != "Cafetieria Worker":
-            raise DeneiedRoleMethod("This role can't use this method.")
+            raise DeniedRoleMethod("This role can't use this method.")
 
     def assistStudent(self):
         if self.role != "Cafetieria Worker":
-            raise DeneiedRoleMethod("This role can't use this method.")
+            raise DeniedRoleMethod("This role can't use this method.")
 
     # Librarian methods
     def checkOutBook(self):
         if self.role != "Librarian":
-            raise DeneiedRoleMethod("This role can't use this method.")
+            raise DeniedRoleMethod("This role can't use this method.")
 
