@@ -32,89 +32,112 @@ class Staff(ActorMain):
     def startTeaching(self):
         if self.role != "Teacher" or "Coach":
             raise DeniedRoleMethod("This role can't use this method.")
+        return f"{self.role} {self.name} is starting the lesson in this room: {self.location}."
 
     def stopTeaching(self):
         if self.role != "Teacher" or "Coach":
             raise DeniedRoleMethod("This role can't use this method.")
+        return f"{self.role} {self.name} is ending the lesson in this room: {self.location}."
 
     def prepareLesson(self):
         if self.role != "Teacher" or "Coach":
             raise DeniedRoleMethod("This role can't use this method.")
+        return f"{self.role} {self.name} is preparing the lesson materials."
     
     def recordAttendance(self) :
         if self.role != "Teacher" or "Coach":
             raise DeniedRoleMethod("This role can't use this method.")
+        return f"{self.role} {self.name} is recording attendance for their class {"#LIST OF STUDENTS PRESENT IN ROOM#"}."
 
     # Principal/Vice Principal methods
     def sendAnnouncement(self):
         if self.role != "Principal" or "Vice Principal":
             raise DeniedRoleMethod("This role can't use this method.")
+        return f"{self.role} {self.name} is sending an announcement to all staff and students."
         
-    def evaluateTeacher(self):
+    def conductAssembly(self):
         if self.role != "Principal":
             raise DeniedRoleMethod("This role can't use this method.")
-
+        return f"{self.role} {self.name} is conducting an assembly in the Gymnasium or Auditorium."
+        
     # Custodian methods
     def cleanRoom(self):
         if self.role != "Custiodian":
             raise DeniedRoleMethod("This role can't use this method.")
+        return f"{self.role} {self.name} is cleaning the room: {self.location}."
 
     def resupplyRoom(self):
         if self.role != "Custodian":
             raise DeniedRoleMethod("This role can't use this method.")
+        """
+        Further logic with the item inventory can be added here.
+        """
+        return f"{self.role} {self.name} is resupplying the room: {self.location}."
 
     # Resource Officer methods
     def apprehend(self):
         if self.role != "Resource Officer":
             raise DeniedRoleMethod("This role can't use this method.")
+        return f"{self.role} {self.name} is apprehending a suspect on school grounds."
     
     def search(self):
         if self.role != "Resource Officer":
             raise DeniedRoleMethod("This role can't use this method.")
+        return f"{self.role} {self.name} is conducting a search on school grounds."
 
     # IT methods
     def fixComputer(self):
         if self.role != "IT":
             raise DeniedRoleMethod("This role can't use this method.")
+        return f"{self.role} {self.name} is fixing a computer issue."
 
     # Nurse methods
     def checkHealth(self):
         if self.role != "Nurse":
             raise DeniedRoleMethod("This role can't use this method.")
+        return f"{self.role} {self.name} is checking a student's health."
     
     def tendTo(self):
         if self.role != "Nurse":
             raise DeniedRoleMethod("This role can't use this method.")
+        return f"{self.role} {self.name} is tending to a student's injury."
 
     # Guidance Counseler methods
     def counsel(self):
         if self.role != "Guidance Counsler":
             raise DeniedRoleMethod("This role can't use this method.")
+        return f"{self.role} {self.name} is counseling a student."
 
     # Secratary methods
     def greet(self):
         if self.role != "Secratary":
             raise DeniedRoleMethod("This role can't use this method.")
+        return f"{self.role} {self.name} is greeting visitors at the front desk."
     
     def ClericalDuty(self):
         if self.role != "Secratary":
             raise DeniedRoleMethod("This role can't use this method.")
+        return f"{self.role} {self.name} is performing clerical duties."
 
     # Cafetieria Worker methods
     def serveFood(self):
         if self.role != "Cafetieria Worker":
             raise DeniedRoleMethod("This role can't use this method.")
+        return f"{self.role} {self.name} is serving food in the cafeteria."
 
     def cleanCafetieria(self):
         if self.role != "Cafetieria Worker":
             raise DeniedRoleMethod("This role can't use this method.")
+        return f"{self.role} {self.name} is cleaning the cafeteria."
 
     def assistStudent(self):
         if self.role != "Cafetieria Worker":
             raise DeniedRoleMethod("This role can't use this method.")
+        return f"{self.role} {self.name} is assisting a student in the cafeteria."
 
     # Librarian methods
     def checkOutBook(self):
         if self.role != "Librarian":
             raise DeniedRoleMethod("This role can't use this method.")
+        return f"{self.role} {self.name} is checking out a book to a student."
 
