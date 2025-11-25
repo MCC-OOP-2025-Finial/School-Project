@@ -7,9 +7,9 @@ class Staff(ActorMain):
     def __init__(self, role, salary=0, hoursWorkedWeek=None, experienceYears=None, **kwargs):
         super().__init__(**kwargs)
         self.role = role
-        self.salary = salary
+        self.salary = salary if salary != 0 else self.calculateSalary()
         self.hoursWorkedWeek = hoursWorkedWeek
-        self.experienceYears = experienceYears
+        self.experienceYears = random.randint(0, 35)
 
     # Determines salary based on staff role.
     def calculateSalary(self):
@@ -23,35 +23,38 @@ class Staff(ActorMain):
         "IT": 54000,
         "Nurse": 67000,
         "Guidance Counselor": 60000,
-        "Librarian": 30000}
+        "Librarian": 30000,
+        "Cafeteria Worker": 30000,
+        "Secratary": 39000,
+        }
 
     # All staff methods check role attribute of object before running
     # If the role attribute is not listed in the method, a custom error is raised
 
     # Teacher/Coach methods
     def startTeaching(self):
-        if self.role != "Teacher" or "Coach":
+        if self.role not in ("Teacher", "Coach"):
             raise DeniedRoleMethod("This role can't use this method.")
         return f"{self.role} {self.name} is starting the lesson in this room: {self.location}."
 
     def stopTeaching(self):
-        if self.role != "Teacher" or "Coach":
+        if self.role not in ("Teacher", "Coach"):
             raise DeniedRoleMethod("This role can't use this method.")
         return f"{self.role} {self.name} is ending the lesson in this room: {self.location}."
 
     def prepareLesson(self):
-        if self.role != "Teacher" or "Coach":
+        if self.role not in ("Teacher", "Coach"):
             raise DeniedRoleMethod("This role can't use this method.")
         return f"{self.role} {self.name} is preparing the lesson materials."
     
     def recordAttendance(self) :
-        if self.role != "Teacher" or "Coach":
+        if self.role not in ("Teacher", "Coach"):
             raise DeniedRoleMethod("This role can't use this method.")
         return f"{self.role} {self.name} is recording attendance for their class {"#LIST OF STUDENTS PRESENT IN ROOM#"}."
 
     # Principal/Vice Principal methods
     def sendAnnouncement(self):
-        if self.role != "Principal" or "Vice Principal":
+        if self.role not in ("Principal", "Vice Principal"):
             raise DeniedRoleMethod("This role can't use this method.")
         return f"{self.role} {self.name} is sending an announcement to all staff and students."
         
@@ -102,7 +105,7 @@ class Staff(ActorMain):
             raise DeniedRoleMethod("This role can't use this method.")
         return f"{self.role} {self.name} is tending to a student's injury."
 
-    # Guidance Counseler methods
+    # Guidance Counselor methods
     def counsel(self):
         if self.role != "Guidance Counsler":
             raise DeniedRoleMethod("This role can't use this method.")
@@ -119,19 +122,19 @@ class Staff(ActorMain):
             raise DeniedRoleMethod("This role can't use this method.")
         return f"{self.role} {self.name} is performing clerical duties."
 
-    # Cafetieria Worker methods
+    # Cafeteria Worker methods
     def serveFood(self):
-        if self.role != "Cafetieria Worker":
+        if self.role != "Cafeteria Worker":
             raise DeniedRoleMethod("This role can't use this method.")
         return f"{self.role} {self.name} is serving food in the cafeteria."
 
-    def cleanCafetieria(self):
-        if self.role != "Cafetieria Worker":
+    def cleanCafeteria(self):
+        if self.role != "Cafeteria Worker":
             raise DeniedRoleMethod("This role can't use this method.")
         return f"{self.role} {self.name} is cleaning the cafeteria."
 
     def assistStudent(self):
-        if self.role != "Cafetieria Worker":
+        if self.role != "Cafeteria Worker":
             raise DeniedRoleMethod("This role can't use this method.")
         return f"{self.role} {self.name} is assisting a student in the cafeteria."
 
