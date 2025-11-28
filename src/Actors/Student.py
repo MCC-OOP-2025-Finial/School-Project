@@ -49,9 +49,5 @@ class Student(ActorMain):
         else:
             print(f"{self.name} is not in a class right now.")
 
-    def go_to(self, location):
-        """Movement wrapper for ActorMain's Goto()"""
-        print(self.Goto(location))
-
     def __str__(self):
         return f"Student {self.name} ({self.id}) - Major: {self.major}, GPA: {self.gpa} | Email: {self.email} | Current Class: {self.current_class or 'None'} | Schedule: {', '.join(self.schedule) if self.schedule else 'No more classes today.'} | Location: {self.location} "

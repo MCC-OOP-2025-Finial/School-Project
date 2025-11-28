@@ -16,7 +16,7 @@ class Room:
 
 
         self.actors = list(actors) if actors is not None else []
-        self.teacher = teacher or Staff(role="Teacher", location=self.name)
+        # self.teacher = teacher or Staff(role="Teacher", location=self.name)
         
 
 

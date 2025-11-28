@@ -89,3 +89,11 @@ def generate_student(numStudents):
         student = Student()
         students.append(student)
     return students
+
+def generate_teacher():
+    """Generate a list of dummy staff for simulation purposes."""
+    from Actors.Staff import Staff
+    teachers = []
+    teacher = Staff(role="Teacher")
+    teachers.append(teacher)
+    return teachers
