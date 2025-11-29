@@ -93,7 +93,12 @@ def generate_student(numStudents):
 def generate_teacher():
     """Generate a list of dummy staff for simulation purposes."""
     from Actors.Staff import Staff
+    from Data.Classes import Classes
+
     teachers = []
-    teacher = Staff(role="Teacher")
-    teachers.append(teacher)
+    # Create one teacher per class type and place them in their classroom (location)
+    for class_name in Classes:
+        # Let ActorMain generate a realistic personal name; set location to class name
+        teacher = Staff(role="Teacher", location=class_name)
+        teachers.append(teacher)
     return teachers
