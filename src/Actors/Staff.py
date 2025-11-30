@@ -27,6 +27,9 @@ class Staff(ActorMain):
         "Cafeteria Worker": 30000,
         "Secratary": 39000,
         }
+        # Use dict.get to retrieve salary by role; calling the dict like a function
+        # raises TypeError ('dict' object is not callable).
+        return salaries.get(self.role, 0)
 
     # All staff methods check role attribute of object before running
     # If the role attribute is not listed in the method, a custom error is raised
@@ -50,7 +53,7 @@ class Staff(ActorMain):
     def recordAttendance(self) :
         if self.role not in ("Teacher", "Coach"):
             raise DeniedRoleMethod("This role can't use this method.")
-        return f"{self.role} {self.name} is recording attendance for their class {"#LIST OF STUDENTS PRESENT IN ROOM#"}."
+        return f"{self.role} {self.name} is recording attendance for their class."
 
     # Principal/Vice Principal methods
     def sendAnnouncement(self):
@@ -65,7 +68,7 @@ class Staff(ActorMain):
         
     # Custodian methods
     def cleanRoom(self):
-        if self.role != "Custiodian":
+        if self.role != "Custodian":
             raise DeniedRoleMethod("This role can't use this method.")
         return f"{self.role} {self.name} is cleaning the room: {self.location}."
 
@@ -107,7 +110,7 @@ class Staff(ActorMain):
 
     # Guidance Counselor methods
     def counsel(self):
-        if self.role != "Guidance Counsler":
+        if self.role != "Guidance Counslor":
             raise DeniedRoleMethod("This role can't use this method.")
         return f"{self.role} {self.name} is counseling a student."
 
