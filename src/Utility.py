@@ -102,3 +102,29 @@ def generate_teacher():
         teacher = Staff(role="Teacher", location=class_name)
         teachers.append(teacher)
     return teachers
+
+
+def generate_rooms(teachers: list = None):
+    """Create Room objects for every name listed in `Data.Rooms.Rooms`.
+
+    If `teachers` is provided, teachers whose `location` matches a room
+    name will be attached to that Room as its teacher.
+    Returns a dict mapping room name -> Room instance.
+    """
+    from Enviroment.Room import Room
+    from Data.Rooms import Rooms
+
+    rooms = {}
+    for name in Rooms:
+        # find a teacher assigned to this location (if given)
+        teacher = None
+        if teachers:
+            for t in teachers:
+                if getattr(t, 'location', None) == name:
+                    teacher = t
+                    break
+
+        room = Room(name=name, description=f"{name} in the school.", actors=[], teacher=teacher)
+        rooms[name] = room
+
+    return rooms

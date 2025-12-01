@@ -16,12 +16,13 @@ class Room:
 
 
         self.actors = list(actors) if actors is not None else []
-        # self.teacher = teacher or Staff(role="Teacher", location=self.name)
-        
-
+        # store the teacher (may be None)
+        self.teacher = teacher
 
         print(f"Room '{self.name}' created.")
-        self.add_actor(self.teacher)
+        # only add the teacher to the actors list if provided
+        if self.teacher is not None:
+            self.add_actor(self.teacher)
         
     def add_actor(self, actor: Any):
 

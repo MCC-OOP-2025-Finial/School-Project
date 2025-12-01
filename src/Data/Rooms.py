@@ -1,0 +1,29 @@
+"""List of rooms and non-class locations used by the simulation.
+
+Add or remove names here to expand what rooms exist in the school.
+"""
+
+Rooms = [
+    # Common classroom names (kept for compatibility with Classes.py)
+    "Math",
+    "Science",
+    "History",
+    "English",
+    "Art Room",
+    "Music Room",
+    "Computer Lab",
+    "Science Lab",
+
+    # Typical school-wide locations
+    "Gymnasium",
+    "Cafeteria",
+    "Library",
+    "Auditorium",
+    "Main Office",
+    "Principal Office",
+    "Guidance Office",
+
+    # Support and specialty spaces
+    "Nurse Office",
+    "IT Room",
+]
