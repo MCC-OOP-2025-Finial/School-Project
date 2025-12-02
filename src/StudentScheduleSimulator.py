@@ -50,9 +50,9 @@ class StudentScheduleSimulator:
         for room_name in Rooms:
             occupants = room_occupants[room_name]
             if occupants:
-                print(f"  {room_name}: {', '.join(occupants)}")
+                print(f"  {room_name}: {', '.join(occupants)}\n")
             else:
-                print(f"  {room_name}: (empty)")
+                print(f"  {room_name}: (empty)\n")
     
     async def run_daily_simulation(self):
         """Run the full day simulation for all students."""
@@ -181,8 +181,7 @@ class StudentScheduleSimulator:
                     try:
                         # Optionally include the number of students present
                         attendance_msg = staff_member.recordAttendance()
-                        # replace placeholder with count if present
-                        if "#LIST OF STUDENTS" in attendance_msg or "#LIST OF STUDENTS PRESENT IN ROOM" in attendance_msg:
+                        if "#LIST OF STUDENTS" in attendance_msg or "#LIST OF STUDENTS here" in attendance_msg:
                             attendance_msg = f"{staff_member.role} {staff_member.name} is recording attendance for their class. Students present: {len(class_attendance[class_name])}."
                         print(attendance_msg)
                         print(staff_member.startTeaching())

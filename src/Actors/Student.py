@@ -27,7 +27,7 @@ class Student(ActorMain):
         Returns the class name for simulator use.
         """
         if not self.schedule:
-            print(f"{self.name} has no more classes today.")
+            print(f"{self.name} has no more classes today.\n")
             self.current_class = None
             return None
         
@@ -39,9 +39,9 @@ class Student(ActorMain):
     def attend_class(self):
         """Simulates attending the current class."""
         if self.current_class:
-            print(f"{self.name} is attending {self.current_class}.")
+            print(f"{self.name} is attending {self.current_class}.\n")
         else:
-            print(f"{self.name} is not in a class right now.")
+            print(f"{self.name} is not in a class right now.\n")
 
     def __str__(self):
         return f"Student {self.name} ({self.id}) - Major: {self.major}, GPA: {self.gpa} | Email: {self.email} | Current Class: {self.current_class or 'None'} | Schedule: {', '.join(self.schedule) if self.schedule else 'No more classes today.'} | Location: {self.location} "

@@ -1,14 +1,15 @@
+# Elijah
+
 # School Project — Student Schedule Simulator
 
 A small Python simulation that models a school's daily activity: students moving through schedules, teachers and staff occupying rooms, and simple period/lunch logic. The codebase contains actor classes (students/staff), environment rooms, utilities to generate sample data, and a simulator that runs a day for all students.
 
 ## Diagram Layout (LucidChart UML)
 
-- School Activity Diagramn.pdf 
-    - 
-- School Actor Diagram 2.pdf
-- School Actor Diagram.pdf 
-- School Overview.pdf
+- School Activity Diagram — Activity diagram showing the main flows for a typical school day (student movement between rooms, period transitions, and lunch flows).
+- School Actor Diagram 2 — UML actor/class diagram showing primary actors (Student, Staff, Teacher) and their relationships used by the simulator.
+- School Actor Diagram — Earlier actor/class diagram.
+- School Overview — Overview of school components and data flows.
 
 ## Key features
 
@@ -22,15 +23,15 @@ A small Python simulation that models a school's daily activity: students moving
 Top-level (relevant files and folders):
 
 - `src/`
-	- `main.py` — (entry point; see below)  
-	- `StudentScheduleSimulator.py` — simulation driver for moving students through schedules and running periods/lunch.  
-	- `Utility.py` — helper functions to generate students, teachers, rooms and custom exceptions.  
-	- `Actors/Actor_Main.py` — base actor class (common fields/methods).  
-	- `Actors/Student.py` — Student actor, schedule handling.  
-	- `Actors/Staff.py` — Staff actor with role-specific methods and salary calculation.  
-	- `Data/Rooms.py` — list of room names used by the simulator.  
-	- `Data/Classes.py` — list of class short-names (Math, Science, etc.).  
-	- `Enviroment/Room.py` — Room class that tracks actors and teacher.
+- `main.py` — (entry point; see below)  
+- `StudentScheduleSimulator.py` — simulation driver for moving students through schedules and running periods/lunch.  
+- `Utility.py` — helper functions to generate students, teachers, rooms and custom exceptions.  
+- `Actors/Actor_Main.py` — base actor class (common fields/methods).  
+- `Actors/Student.py` — Student actor, schedule handling.  
+- `Actors/Staff.py` — Staff actor with role-specific methods and salary calculation.  
+- `Data/Rooms.py` — list of room names used by the simulator.  
+- `Data/Classes.py` — list of class short-names (Math, Science, etc.).  
+- `Enviroment/Room.py` — Room class that tracks actors and teacher.
 
 ## Requirements
 
@@ -51,7 +52,7 @@ You can also pin dependencies to a `requirements.txt` file if you wish; this pro
 pip install names
 ```
 
-2. Run the (example) entry point. From the repository root:
+2.Run the (example) entry point. From the repository root:
 
 ```bash
 python3 src/main.py

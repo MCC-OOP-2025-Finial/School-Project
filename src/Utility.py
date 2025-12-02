@@ -157,7 +157,7 @@ def generate_other_staff():
     return staff_list
 
 
-def generate_rooms(teachers: list = None):
+def generate_rooms(teachers=None):
     """Create Room objects for every name listed in `Data.Rooms.Rooms`.
 
     If `teachers` is provided, teachers whose `location` matches a room
