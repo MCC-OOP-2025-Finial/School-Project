@@ -1,3 +1,4 @@
+# James
 from Actors.Actor_Main import ActorMain
 import random
 from Utility import DeniedRoleMethod
@@ -10,7 +11,11 @@ class Staff(ActorMain):
         self.salary = salary if salary != 0 else self.calculateSalary()
         self.experienceYears = random.randint(0, 35)
 
+    """
     # Determines salary based on staff role.
+    * Returns:
+    *   int: Salary amount based on role.
+    """
     def calculateSalary(self):
         salaries = {
         "Teacher": 63000,
@@ -26,12 +31,15 @@ class Staff(ActorMain):
         "Cafeteria Worker": 30000,
         "Secratary": 39000,
         }
-        # Use dict.get to retrieve salary by role; calling the dict like a function
-        # raises TypeError ('dict' object is not callable).
+        """
+        Use dict.get to retrieve salary by role
+        Raises TypeError
+        """
         return salaries.get(self.role, 0)
-
-    # All staff methods check role attribute of object before running
-    # If the role attribute is not listed in the method, a custom error is raised
+    """
+    All staff methods check role attribute of object before running
+    If the role attribute is not listed in the method, a custom error is raised
+    """
 
     # Teacher/Coach methods
     def startTeaching(self):
@@ -40,6 +48,11 @@ class Staff(ActorMain):
         return f"{self.role} {self.name} is starting the lesson in this room: {self.location}."
 
     def stopTeaching(self):
+        """
+        ### Ends the lesson in the current room.
+        * Returns:
+        *   str: Message indicating the lesson has ended.
+        """
         if self.role not in ("Teacher", "Coach"):
             raise DeniedRoleMethod("This role can't use this method.")
         return f"{self.role} {self.name} is ending the lesson in this room: {self.location}."

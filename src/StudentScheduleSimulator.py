@@ -1,3 +1,4 @@
+#Caleb/James/Elijah/Wilfried
 import asyncio
 from Data.Rooms import Rooms
 from Data.Classes import Classes
@@ -21,26 +22,31 @@ class StudentScheduleSimulator:
         """Add a staff member to the simulation."""
         self.staff.append(staff_member)
     
+    """
+    Add staff to their assigned rooms
+    Add students to their current locations
+    Print all rooms and occupants
+    """
     def _print_room_occupancy_report(self):
         """Print room occupancy report showing all staff and students by location."""
-        print("\n📍 Room Occupancy Report:")
+        print("\nRoom Occupancy Report:")
         room_occupants = {room: [] for room in Rooms}
         
-        # Add staff to their assigned rooms
+        
         for staff_member in self.staff:
             if staff_member.location in room_occupants:
                 room_occupants[staff_member.location].append(
                     f"{staff_member.role} {staff_member.name}"
                 )
         
-        # Add students to their current locations
+        
         for student in self.students:
             if student.location in room_occupants:
                 room_occupants[student.location].append(
                     f"Student {student.name}"
                 )
         
-        # Print all rooms and occupants
+        
         for room_name in Rooms:
             occupants = room_occupants[room_name]
             if occupants:
@@ -50,15 +56,17 @@ class StudentScheduleSimulator:
     
     async def run_daily_simulation(self):
         """Run the full day simulation for all students."""
-        print("📚 Starting Student Schedule Simulation...\n")
-        print(f"⌛ Each period will last {self.period_length_seconds} second(s)." )
+        print("Starting Student Schedule Simulation...\n")
+        print(f"Each period will last {self.period_length_seconds} second(s)." )
 
         max_periods = max(len(student.schedule) for student in self.students)
 
+        """
         # Build mapping from short class name (e.g. "Math") -> room name
         # (e.g. "Math Classroom") so we can match teacher locations to
         # student schedule entries. Prefer rooms containing "Classroom", then
         # "Room", then fallback to the first matching room.
+        """
         class_to_room = {}
         for c in Classes:
             matches = [r for r in Rooms if c in r]
@@ -138,9 +146,10 @@ class StudentScheduleSimulator:
                         print(staff_member.prepareLesson())
                     except Exception as e:
                         print(f"{staff_member.name} error (prepare): {e}")
-
-                # 2-3) Students move to next class and attend
-                # Keep mapping of class -> students for teacher attendance info
+                """
+                Students move to next class and attend
+                Keep mapping of class -> students for teacher attendance info
+                """
                 class_attendance = {}
                 for student in self.students:
                     if student.schedule:
@@ -152,20 +161,21 @@ class StudentScheduleSimulator:
                         class_attendance.setdefault(current, []).append(student)
                     else:
                         print(f"{student.name} has no class this period.")
-
-                # 4-6) Teachers for active classes record attendance, start, then stop the lesson
+                """
+                Teachers for active classes record attendance, start, then stop the lesson
+                map staff member's room back to the short class name
+                Enforce that Physical Education is taught by a Coach
+                Non-PE classes must be taught by Teachers
+                """
                 for staff_member in self.staff:
-                    # map staff member's room back to the short class name
                     class_name = room_to_class.get(staff_member.location)
                     if not class_name:
                         # no mapping available, skip
                         continue
                     if class_name not in class_attendance:
                         continue
-                    # Enforce that Physical Education is taught by a Coach
                     if class_name == 'Physical Education' and staff_member.role != 'Coach':
                         continue
-                    # Non-PE classes must be taught by Teachers
                     if class_name != 'Physical Education' and staff_member.role != 'Teacher':
                         continue
                     try:
@@ -183,36 +193,39 @@ class StudentScheduleSimulator:
                 # Print room occupancy report after period activities
                 self._print_room_occupancy_report()
 
-        print("\n🏁 Simulation Complete!\n")
-
+        print("\nSimulation Complete!\n")
+    """
+    Lunch Period
+    All students go to cafeteria
+    Print students attending lunch
+    Cafeteria Worker serves food after all students arrive
+    Cafeteria Worker cleans after students finish lunch
+    # Print room occupancy report after lunch
+    """
     async def _run_lunch_period(self, lunch_period_num):
-        """Run a lunch period where all students go to the Cafeteria.
-        
+        """
+        Run a lunch period where all students go to the Cafeteria.
         Cafeteria Worker serves food after all students arrive, then cleans after.
         """
         print(f"\n=== Lunch Period ===")
         
-        # All students go to cafeteria
-        print("\n🍽️ Students heading to Cafeteria:")
+        print("\nStudents heading to Cafeteria:")
         for student in self.students:
             student.Goto("Cafeteria")
             print(f"{student.name} is going to Cafeteria.")
         
-        # Print students attending lunch
-        print("\n🍽️ Students attending lunch:")
+        print("\nStudents attending lunch:")
         for student in self.students:
             print(f"{student.name} is attending lunch in the Cafeteria.")
         
-        # Cafeteria Worker serves food after all students arrive
-        print("\n🍽️ Cafeteria Worker serving food:")
+        print("\nCafeteria Worker serving food:")
         for staff_member in self.staff:
             if staff_member.role == "Cafeteria Worker":
                 try:
                     print(f"{staff_member.serveFood()}")
                 except Exception as e:
                     print(f"{staff_member.name} error (serve): {e}")
-        
-        # Cafeteria Worker cleans after students finish lunch
+
         print("\n🧹 Cafeteria Worker cleaning:")
         for staff_member in self.staff:
             if staff_member.role == "Cafeteria Worker":
@@ -221,5 +234,4 @@ class StudentScheduleSimulator:
                 except Exception as e:
                     print(f"{staff_member.name} error (clean): {e}")
         
-        # Print room occupancy report after lunch
         self._print_room_occupancy_report()

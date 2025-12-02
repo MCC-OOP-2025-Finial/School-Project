@@ -1,10 +1,11 @@
+#James
 """List of rooms and non-class locations used by the simulation.
 
 Add or remove names here to expand what rooms exist in the school.
 """
 
 Rooms = [
-    # Common classroom names (kept for compatibility with Classes.py)
+    # Common classroom names
     "Math Classroom",
     "Science Classroom",
     "History Classroom",
