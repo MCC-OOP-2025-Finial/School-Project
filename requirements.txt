@@ -1,0 +1,8 @@
+names
+
+asyncio 
+
+# Notes:
+# - 'names' is used in `src/Actors/Actor_Main.py` to generate actor names.
+# - No other third-party packages were detected in the repository's Python files.
+# If you want pinned versions, run `pip install names` then `pip freeze` to capture the exact version.
