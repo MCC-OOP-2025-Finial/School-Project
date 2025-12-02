@@ -93,15 +93,67 @@ def generate_student(numStudents):
 def generate_teacher():
     """Generate a list of dummy staff for simulation purposes."""
     from Actors.Staff import Staff
-    from Data.Classes import Classes
+    # Instead of using class-type names (e.g. "Math"), create teachers only for
+    # actual classroom locations defined in Data.Rooms.Rooms. This ensures
+    # teachers are placed in real rooms like "Math Classroom" or "Computer Lab".
+    from Data.Rooms import Rooms
 
     teachers = []
-    # Create one teacher per class type and place them in their classroom (location)
-    for class_name in Classes:
-        # Let ActorMain generate a realistic personal name; set location to class name
-        teacher = Staff(role="Teacher", location=class_name)
+    # Treat rooms that look like classrooms: contain Classroom, Room, or Lab
+    classroom_keywords = ("Classroom", "Room", "Lab")
+    classroom_rooms = [r for r in Rooms if any(k in r for k in classroom_keywords)]
+
+    for room_name in classroom_rooms:
+        # Let ActorMain generate a realistic personal name; set location to the room name
+        teacher = Staff(role="Teacher", location=room_name)
         teachers.append(teacher)
+
     return teachers
+
+
+def generate_other_staff():
+    """Generate staff members per non-teacher role, assigned to specified rooms.
+    
+    Roles and room assignments:
+    - Principal (1) -> Principal Office
+    - Vice Principal (1) -> Main Office
+    - Custodian (2) -> Cafeteria
+    - Resource Officer (2) -> Main Office
+    - IT (1) -> Computer Lab
+    - Nurse (1) -> Nurse Office
+    - Guidance Counselor (1) -> Guidance Office
+    - Librarian (1) -> Library
+    - Cafeteria Worker (3) -> Cafeteria
+    - Coach (1) -> Gymnasium
+    - Secratary (1) -> Main Office
+    
+    Returns:
+        List of Staff objects.
+    """
+    from Actors.Staff import Staff
+    
+    # Explicit role -> (room, count) assignment
+    role_room_count_map = {
+        "Principal": ("Principal Office", 1),
+        "Vice Principal": ("Main Office", 1),
+        "Custodian": ("Cafeteria", 2),
+        "Resource Officer": ("Main Office", 2),
+        "IT": ("Computer Lab", 1),
+        "Nurse": ("Nurse Office", 1),
+        "Guidance Counselor": ("Guidance Office", 1),
+        "Librarian": ("Library", 1),
+        "Cafeteria Worker": ("Cafeteria", 3),
+        "Coach": ("Gymnasium", 1),
+        "Secratary": ("Main Office", 1),
+    }
+    
+    staff_list = []
+    for role, (room, count) in role_room_count_map.items():
+        for _ in range(count):
+            staff_member = Staff(role=role, location=room)
+            staff_list.append(staff_member)
+    
+    return staff_list
 
 
 def generate_rooms(teachers: list = None):

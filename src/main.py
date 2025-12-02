@@ -1,6 +1,6 @@
 import StudentScheduleSimulator as sim
 from Utility import TooManyStudentsError
-from Utility import generate_student, generate_teacher
+from Utility import generate_student, generate_teacher, generate_other_staff
 import asyncio
 
 if __name__ == "__main__":
@@ -22,8 +22,11 @@ if __name__ == "__main__":
             print(f"Simulating with {num_students} students...")
             students = generate_student(num_students)
             teachers = generate_teacher()
+            other_staff = generate_other_staff()
+            # Combine teachers and other staff
+            all_staff = teachers + other_staff
             period_length = int(PeriodLength) if PeriodLength.isdigit() else 1
-            sim_instance = sim.StudentScheduleSimulator(students, teachers, period_length_seconds=period_length)
+            sim_instance = sim.StudentScheduleSimulator(students, all_staff, period_length_seconds=period_length)
             await sim_instance.run_daily_simulation()
 
 

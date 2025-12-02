@@ -1,9 +1,6 @@
 import random
 from Actors.Actor_Main import ActorMain
-import sys
 from Data.Classes import Classes
-
-## grab the
 
 
 class Student(ActorMain):
@@ -22,10 +19,6 @@ class Student(ActorMain):
         # Student class schedule (list of class names)
         self.schedule = schedule or random.sample(Classes, k=4)
         self.current_class = None
-
-    def set_schedule(self, schedule_list):
-        """Assign a full class schedule for the day."""
-        self.schedule = schedule_list
 
     def next_period(self):
         """

@@ -5,10 +5,10 @@ Add or remove names here to expand what rooms exist in the school.
 
 Rooms = [
     # Common classroom names (kept for compatibility with Classes.py)
-    "Math",
-    "Science",
-    "History",
-    "English",
+    "Math Classroom",
+    "Science Classroom",
+    "History Classroom",
+    "English Classroom",
     "Art Room",
     "Music Room",
     "Computer Lab",
@@ -22,8 +22,5 @@ Rooms = [
     "Main Office",
     "Principal Office",
     "Guidance Office",
-
-    # Support and specialty spaces
     "Nurse Office",
-    "IT Room",
 ]

@@ -4,11 +4,10 @@ from Utility import DeniedRoleMethod
 
 # Staff interface
 class Staff(ActorMain):
-    def __init__(self, role, salary=0, hoursWorkedWeek=None, experienceYears=None, **kwargs):
+    def __init__(self, role, salary=0, experienceYears=None, **kwargs):
         super().__init__(**kwargs)
         self.role = role
         self.salary = salary if salary != 0 else self.calculateSalary()
-        self.hoursWorkedWeek = hoursWorkedWeek
         self.experienceYears = random.randint(0, 35)
 
     # Determines salary based on staff role.
@@ -110,7 +109,7 @@ class Staff(ActorMain):
 
     # Guidance Counselor methods
     def counsel(self):
-        if self.role != "Guidance Counslor":
+        if self.role != "Guidance Counselor":
             raise DeniedRoleMethod("This role can't use this method.")
         return f"{self.role} {self.name} is counseling a student."
 

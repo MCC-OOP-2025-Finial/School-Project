@@ -2,12 +2,6 @@ import random
 import string
 import names # type: ignore
 
-
-
-
-
-
-
 class ActorMain:
     """
     Base class for all school actors (students, teachers, staff).
@@ -45,10 +39,6 @@ class ActorMain:
         # Contacts
         self.phoneNumber = phoneNumber or "000-000-0000"
         self.emergencyContact = emergencyContact or "None"
-
-   
-    def set_schedule(self, schedule_dict):
-        self.schedule = schedule_dict
         
     def Goto(self, location):
         self.location = location
